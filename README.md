@@ -45,12 +45,12 @@ Run `yarn report` to get a report of bundle size which helps you:
 
 You can see built example [here](https://beraliv.github.io/vue-vk-friend-graph/)
 
-## Problems
+## Issues
 
 `yarn deploy` works well, but the routes are incorrect in the `dist/index.html`:
 
 - `yarn build`
-- Replace all `"/` with `"./`
+- Replace all `"/` with `"./` in `dist/index.html`
 - Then run `gh-pages -d dist` inside root directory
 - Enjoy your gh-page! 
 
