@@ -34,7 +34,9 @@ Run `yarn report` to get a report of bundle size which helps you:
 - Find modules that got there by mistake
 - Optimize it!
 
+## Demo
 
+You can see built example [here](https://beraliv.github.io/vue-vk-friend-graph/)
 
 ---
 
