@@ -10,7 +10,7 @@
     "build": "poi build",
     "report": "poi build --bundle-report",
     "serve": "serve dist --single",
-    "predeploy": "yarn run build",
+    "predeploy": "yarn build",
     "deploy": "yarn install && gh-pages -d dist"
   },
   "babel": {
