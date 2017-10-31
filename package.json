@@ -2,7 +2,7 @@
   "private": true,
   "name": "vue-vk-friend-graph",
   "productName": "vue-vk-friend-graph",
-  "description": "Vue / Vuex / Vk Friend Graph App",
+  "description": "Vue / Vuex / Yarn / Babel VK Friend Graph App",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
