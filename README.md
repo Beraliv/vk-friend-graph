@@ -1,5 +1,5 @@
 # vue-vk-friend-graph
-Vue / Vuex / Yarn / Babel VK Friend Graph App
+Vue / Vuex / Yarn / Babel / ES6 VK Friend Graph App
 
 
 <p>
