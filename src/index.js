@@ -1,10 +1,10 @@
 import Vue from 'vue';
-import * as Components from './components';
+import * as AllComponents from './components';
 import store from './store';
 
 new Vue({
-	store,
   el: '#vk-app',
-  render: h => h(Components.VkApp),
-  components: Components
-})
+  store,
+  render: h => h(AllComponents.VkApp),
+  components: AllComponents
+});
