@@ -23,9 +23,8 @@ const getParams = () => {
 
     if (params) {
       localStorage.setItem(VK_TOKEN_KEY, params);
+      location.href = parts[0];
     }
-
-    // location.href = parts[0];
   }
 
   return params;
