@@ -1,4 +1,5 @@
 import Vue from 'vue';
+
 import * as AllComponents from './components';
 import store from './store';
 
