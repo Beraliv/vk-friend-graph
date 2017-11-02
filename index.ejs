@@ -12,7 +12,7 @@
       <meta name="description" 
             content="<%= htmlWebpackPlugin.options.description %>"/>
     <% } %>
-
+    
     <% for (var chunk of webpack.chunks) {
         for (var file of chunk.files) {
           if (file.match(/\.(js|css)$/)) { %>
@@ -22,16 +22,11 @@
           <% }
         }
     } %>
-    <script src="https://vk.com/js/api/openapi.js">
-      VK.init({
-        apiId: 6240559    
-      });
-    </script>
   </head>
   <body>
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
-    <div id="app"></div>
+    <div id="vk-app"></div>
   </body>
 </html>
