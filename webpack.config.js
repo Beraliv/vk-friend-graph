@@ -10,7 +10,8 @@ module.exports = {
 		extensions: ['.js', '.vue'],
 		alias: {
 			vue$: 'vue/dist/vue.esm.js',
-			components: path.resolve(__dirname, 'src/components')
+			components: path.resolve(__dirname, 'src/components'),
+			helpers: path.resolve(__dirname, 'src/helpers')
 		}
 	},
 	module: {

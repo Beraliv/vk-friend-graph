@@ -2,7 +2,11 @@ import actions from './actions';
 import getters from './getters';
 import mutations from './mutations';
 
-const initialState = {};
+const initialState = {
+	accessToken: null,
+	expiresIn: null,
+	userId: null
+};
 
 export default {
 	state: initialState,

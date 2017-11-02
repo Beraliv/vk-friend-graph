@@ -1,5 +1,5 @@
-import VkOpenApi from './vk-open-api';
+import VkAuth from './vk-auth';
 
 export {
-	VkOpenApi
+	VkAuth
 };
