@@ -4,7 +4,7 @@ import { combineGetters } from '../../../helpers/functions';
 import { VK_TOKEN_KEY } from '../../../helpers/const';
 
 const getParams = () => {
-  let params = localStorage.getItem(VK_TOKEN_KEY);
+  let params = JSON.parse(localStorage.getItem(VK_TOKEN_KEY));
 
   if (!params) {
     const parts = combineGetters(
@@ -22,7 +22,7 @@ const getParams = () => {
     );
 
     if (params) {
-      localStorage.setItem(VK_TOKEN_KEY, params);
+      localStorage.setItem(VK_TOKEN_KEY, JSON.stringify(params));
       location.href = parts[0];
     }
   }
