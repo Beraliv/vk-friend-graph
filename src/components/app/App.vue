@@ -7,7 +7,9 @@
 </template>
 
 <script>
-  import { VkAuth } from 'components';
+  // TODO: import { Component } from 'component'; is not working
+  // replaced temporary with relative path
+  import VkAuth from '../auth/Auth.vue';
 
   export default {
     name: 'VkApp',

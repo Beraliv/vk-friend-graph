@@ -1,5 +1,5 @@
-import VkApp from 'components/app/App.vue';
-import VkAuth from 'components/auth/Auth.vue';
+import VkApp from './app/App.vue';
+import VkAuth from './auth/Auth.vue';
 
 export {
 	VkApp,
