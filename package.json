@@ -9,7 +9,7 @@
     "build": "webpack",
     "watch": "webpack --watch",
     "dev": "webpack-dev-server",
-    "predeploy": "yarn prod:build",
+    "predeploy": "yarn build",
     "deploy": "gh-pages -d dist"
   },
   "author": {
