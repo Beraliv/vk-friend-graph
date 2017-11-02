@@ -11970,6 +11970,10 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
 
 exports.default = {
 	name: 'VkAuth',
@@ -11979,7 +11983,7 @@ exports.default = {
 			baseUrl: 'https://oauth.vk.com/authorize',
 			apiId: 6240559,
 			display: 'page',
-			redirectUri: 'https://oauth.vk.com/blank.html',
+			redirectUri: 'https://beraliv.github.io/vue-vk-friend-graph',
 			scope: 'friends',
 			responseType: 'token',
 			version: '5.52'
@@ -12000,6 +12004,16 @@ exports.default = {
 
 			return this.baseUrl + '?' + params.join('&');
 		}
+	},
+
+	methods: {
+		handleClick: function handleClick(event) {
+			console.log(event);
+
+			setTimeout(function () {
+				console.log(location);
+			}, 1000);
+		}
 	}
 };
 
@@ -12015,7 +12029,9 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "vk-auth" }, [
     _vm._v("\n\tAuth Hello\n\t"),
-    _c("a", { attrs: { href: _vm.uri } }, [_vm._v("Auth to VK")])
+    _c("a", { attrs: { href: _vm.uri }, on: { click: _vm.handleClick } }, [
+      _vm._v("\n\t\tAuth to VK\n\t")
+    ])
   ])
 }
 var staticRenderFns = []
@@ -12064,7 +12080,7 @@ exports = module.exports = __webpack_require__(50)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
