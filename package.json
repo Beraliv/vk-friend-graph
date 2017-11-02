@@ -3,48 +3,35 @@
   "name": "vue-vk-friend-graph",
   "productName": "vue-vk-friend-graph",
   "description": "Vue / Vuex / Yarn / Babel VK Friend Graph App",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "license": "MIT",
   "scripts": {
-    "dev": "poi",
-    "build": "poi build",
-    "report": "poi build --bundle-report",
-    "serve": "serve dist --single",
-    "predeploy": "yarn build",
-    "deploy": "yarn install && gh-pages -d dist"
-  },
-  "babel": {
-    "presets": [
-      [
-        "vue-app",
-        {
-          "useBuiltIns": true
-        }
-      ]
-    ]
+    "build": "webpack",
+    "watch": "webpack --watch",
+    "dev": "webpack-dev-server",
+    "predeploy": "yarn prod:build",
+    "deploy": "gh-pages -d dist"
   },
   "author": {
     "name": "Alexey I. Berezin",
     "email": "beraliv.spb@gmail.com"
   },
   "dependencies": {
-    "gh-pages": "^1.0.0",
-    "normalize.css": "^7.0.0",
-    "object-assign": "^4.1.1",
-    "promise-polyfill": "^6.0.2",
-    "vuex": "^3.0.0"
+    "vue": "^2.5.2",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
-    "babel": "^6.23.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-stage-2": "^6.24.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-runtime": "^6.26.0",
     "css-loader": "^0.28.7",
-    "poi": "^9.0.0",
-    "poi-preset-bundle-report": "^2.0.0",
-    "serve": "^6.4.0",
     "style-loader": "^0.19.0",
-    "vue-loader": "^13.3.0"
+    "vue-html-loader": "^1.2.4",
+    "vue-loader": "^13.3.0",
+    "vue-template-compiler": "^2.5.2",
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.3"
   }
 }
