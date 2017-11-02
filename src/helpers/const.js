@@ -1,0 +1,1 @@
+export const VK_TOKEN_KEY = 'vk-item-param';

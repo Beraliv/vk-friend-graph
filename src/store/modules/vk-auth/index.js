@@ -4,7 +4,6 @@ import mutations from './mutations';
 
 const initialState = {
 	accessToken: null,
-	expiresIn: null,
 	userId: null
 };
 

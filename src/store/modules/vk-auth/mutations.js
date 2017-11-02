@@ -3,13 +3,11 @@ import * as types from './types';
 const mutations = {
   [types.AUTHORISE_FAILURE](state) {
     state.accessToken = null;
-    state.expiresIn = null;
     state.userId = null;
   },
 
-  [types.AUTHORISE_SUCCESS](state, { accessToken, expiresIn, userId }) {
+  [types.AUTHORISE_SUCCESS](state, { 'access_token': accessToken, 'user_id': userId }) {
     state.accessToken = accessToken;
-    state.expiresIn = expiresIn;
     state.userId = userId;
   }
 };
