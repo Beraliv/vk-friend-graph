@@ -23,6 +23,11 @@
 
     mounted() {
       this.authorise();
+
+      setTimeout(() => {
+        console.log('getting friends started...');
+        this.getFriends();      
+      }, 1000);
     },
 
     computed: {
@@ -38,7 +43,8 @@
 
     methods: {
       ...mapActions({
-        authorise: 'authorise'
+        authorise: 'authorise',
+        getFriends: 'getFriends'
       })
     }
   }
