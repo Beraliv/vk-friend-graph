@@ -46,7 +46,9 @@
       this.authorise();
 
       setTimeout(() => {
-        this.collectData();
+        this.collectData().then(() => {
+          this.getLists();
+        });
       }, 1000);
     },
 
@@ -66,7 +68,8 @@
     methods: {
       ...mapActions({
         authorise: 'authorise',
-        collectData: 'collectData'
+        collectData: 'collectData',
+        getLists: 'getLists'
       })
     }
   }
