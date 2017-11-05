@@ -1,19 +1,23 @@
 import * as types from './types';
 
-import { combineGetters } from '../../../helpers/functions';
-import { VK_TOKEN_KEY } from '../../../helpers/const';
+import {
+  getAuthorisationData,
+  setAuthorisationData,
+  combineGetters
+} from '../../../helpers/functions';
 
-const getParams = () => {
-  let params = JSON.parse(localStorage.getItem(VK_TOKEN_KEY));
 
-  if (!params) {
+const getCredentials = () => {
+  let credentials = getAuthorisationData();
+
+  if (!credentials) {
     const parts = combineGetters(
       location,
       location => location.href,
       uri => uri.split('#')
     );
 
-    params = combineGetters(
+    credentials = combineGetters(
       parts,
       parts => parts[1],
       hashed => hashed.split('&'),
@@ -21,24 +25,24 @@ const getParams = () => {
       pairs => pairs.reduce((obj, [key, value]) => ({ ...obj, [key]: value }), {})
     );
 
-    if (params) {
-      localStorage.setItem(VK_TOKEN_KEY, JSON.stringify(params));
+    if (credentials) {
+      setAuthorisationData(credentials);
       location.href = parts[0];
     }
   }
 
-  return params;
+  return credentials;
 };
 
 const actions = {
   authorise({ commit }) {
-    const params = getParams();
+    const credentials = getCredentials();
 
-    if (!params) {
+    if (!credentials) {
       commit(types.AUTHORISE_FAILURE);
     }
     else {
-      commit(types.AUTHORISE_SUCCESS, params)
+      commit(types.AUTHORISE_SUCCESS, credentials)
     }
   }
 };

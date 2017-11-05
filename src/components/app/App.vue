@@ -5,12 +5,18 @@
     </div>
     <div v-else>
       Authorised by user: {{ userId }}
+      <d3-network
+        :net-nodes="users"
+        :net-links="connections"
+        :options="options"
+      ></d3-network>
     </div>
   </div>
 </template>
 
 <script>
   import { mapActions, mapGetters } from 'vuex';
+  import D3Network from 'vue-d3-network';
 
   // TODO: import { Component } from 'component'; is not working
   // replaced temporary with relative path
@@ -19,21 +25,37 @@
   export default {
     name: 'VkApp',
 
-    components: { VkAuth },
+    components: { VkAuth, D3Network },
 
+    data() {
+      return {
+        options: {
+          nodeSize: 15,
+          nodeLabels: true,
+          canvas: false,
+          size: {
+            w: window.innerWidth,
+            h: window.innerHeight
+          }
+        }
+      };
+    },
+
+    // TODO: add listener to resize event
     mounted() {
       this.authorise();
 
       setTimeout(() => {
-        console.log('getting friends started...');
-        this.getFriends();      
+        this.collectData();
       }, 1000);
     },
 
     computed: {
       ...mapGetters({
         accessToken: 'getAccessToken',
-        userId: 'getUserId'
+        userId: 'getUserId',
+        users: 'getUsers',
+        connections: 'getConnections'
       }),
 
       isNotAuthorised() {
@@ -44,8 +66,10 @@
     methods: {
       ...mapActions({
         authorise: 'authorise',
-        getFriends: 'getFriends'
+        collectData: 'collectData'
       })
     }
   }
 </script>
+
+<style src="vue-d3-network/dist/vue-d3-network.css"></style>
