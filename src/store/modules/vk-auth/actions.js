@@ -6,7 +6,6 @@ import {
   combineGetters
 } from '../../../helpers/functions';
 
-
 const getCredentials = () => {
   let credentials = getAuthorisationData();
 

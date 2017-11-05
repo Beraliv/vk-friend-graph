@@ -1,7 +1,10 @@
+import 'whatwg-fetch';
+
 import fetchJsonp from 'fetch-jsonp';
 
 import {
   getAuthorisationData,
+  combineGetters,
   chunkise,
   urlise,
   flatMap
@@ -24,7 +27,7 @@ const notDeactivated = users => {
 function getFriends({ commit }) {
   const credentials = getAuthorisationData();
   if (!credentials) {
-    return;
+    return Promise.reject();
   }
 
   const { access_token, user_id } = credentials;
@@ -45,15 +48,23 @@ function getFriends({ commit }) {
   });
 }
 
-function getMutualFriends({ commit }, friends) {
+function getMutualFriends({ commit }, friends = []) {
   const credentials = getAuthorisationData();
   if (!credentials) {
-    return;
+    return Promise.reject();
   }
 
   const { access_token } = credentials;
-  const notDeactivatedIds = notDeactivated(friends).map(user => user.user_id);
+  const notDeactivatedIds = combineGetters(
+    friends,
+    friends => notDeactivated(friends),
+    notDeactivatedFriends => notDeactivatedFriends.map(user => user.user_id)
+  );
   commit(types.VK_GET_MUTUAL_FRIENDS_REQUEST);
+
+  if (!notDeactivatedIds) {
+    return Promise.reject();
+  }
 
   return Promise.all(chunkise(notDeactivatedIds).map(chunk => {
     return vkMethodCall('friends.getMutual', {
@@ -76,6 +87,8 @@ const actions = {
       getMutualFriends({ commit }, users).then(() => {
         console.warn('collecting is ready!');
       });
+    }).catch(() => {
+      console.warn('collecting is breaking...');
     });
   }
 };

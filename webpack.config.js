@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
 	entry: [
 		'babel-polyfill',
-		'whatwg-fetch',
+		'es6-promise',
     './src/index.js'
 	],
 	output: {
