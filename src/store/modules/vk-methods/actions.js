@@ -80,16 +80,41 @@ function getMutualFriends({ commit }, friends = []) {
   });
 }
 
+function getLists({ commit }) {
+  const credentials = getAuthorisationData();
+  if (!credentials) {
+    return Promise.reject();
+  }
+
+  const { access_token } = credentials;
+  // commit(types.VK_GET_LISTS_REQUEST);
+
+  console.log('token', access_token);
+  return vkMethodCall('friends.getLists', {
+    access_token
+  }).then((response) => {
+    console.log(response);
+    // commit(types.VK_GET_LISTS_SUCCESS, { user_id, friends });
+    // return friends;
+  }).catch(error => {
+    // commit(types.VK_GET_LISTS_FAILURE, { error });
+  });
+}
+
 const actions = {
   collectData({ commit }) {
     console.warn('collecting starts...');
-    getFriends({ commit }).then(users => {
+    return getFriends({ commit }).then(users => {
       getMutualFriends({ commit }, users).then(() => {
         console.warn('collecting is ready!');
       });
     }).catch(() => {
       console.warn('collecting is breaking...');
     });
+  },
+
+  getLists({ commit }) {
+    getLists({ commit });
   }
 };
 
