@@ -17154,6 +17154,10 @@ var VK_GET_MUTUAL_FRIENDS_REQUEST = exports.VK_GET_MUTUAL_FRIENDS_REQUEST = 'VK_
 var VK_GET_MUTUAL_FRIENDS_SUCCESS = exports.VK_GET_MUTUAL_FRIENDS_SUCCESS = 'VK_GET_MUTUAL_FRIENDS_SUCCESS';
 var VK_GET_MUTUAL_FRIENDS_FAILURE = exports.VK_GET_MUTUAL_FRIENDS_FAILURE = 'VK_GET_MUTUAL_FRIENDS_FAILURE';
 
+var VK_GET_LISTS_REQUEST = exports.VK_GET_LISTS_REQUEST = 'VK_GETLISTS_REQUEST';
+var VK_GET_LISTS_SUCCESS = exports.VK_GET_LISTS_SUCCESS = 'VK_GETLISTS_SUCCESS';
+var VK_GET_LISTS_FAILURE = exports.VK_GET_LISTS_FAILURE = 'VK_GETLISTS_FAILURE';
+
 /***/ }),
 /* 193 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -24553,7 +24557,9 @@ exports.default = {
     this.authorise();
 
     setTimeout(function () {
-      _this.collectData();
+      _this.collectData().then(function () {
+        _this.getLists();
+      });
     }, 1000);
   },
 
@@ -24571,7 +24577,8 @@ exports.default = {
 
   methods: (0, _extends3.default)({}, (0, _vuex.mapActions)({
     authorise: 'authorise',
-    collectData: 'collectData'
+    collectData: 'collectData',
+    getLists: 'getLists'
   }))
 };
 
@@ -25669,18 +25676,46 @@ function getMutualFriends(_ref3) {
   });
 }
 
+function _getLists(_ref5) {
+  var commit = _ref5.commit;
+
+  var credentials = (0, _functions.getAuthorisationData)();
+  if (!credentials) {
+    return _promise2.default.reject();
+  }
+
+  var access_token = credentials.access_token;
+  // commit(types.VK_GET_LISTS_REQUEST);
+
+  console.log('token', access_token);
+  return vkMethodCall('friends.getLists', {
+    access_token: access_token
+  }).then(function (response) {
+    console.log(response);
+    // commit(types.VK_GET_LISTS_SUCCESS, { user_id, friends });
+    // return friends;
+  }).catch(function (error) {
+    // commit(types.VK_GET_LISTS_FAILURE, { error });
+  });
+}
+
 var actions = {
-  collectData: function collectData(_ref5) {
-    var commit = _ref5.commit;
+  collectData: function collectData(_ref6) {
+    var commit = _ref6.commit;
 
     console.warn('collecting starts...');
-    getFriends({ commit: commit }).then(function (users) {
+    return getFriends({ commit: commit }).then(function (users) {
       getMutualFriends({ commit: commit }, users).then(function () {
         console.warn('collecting is ready!');
       });
     }).catch(function () {
       console.warn('collecting is breaking...');
     });
+  },
+  getLists: function getLists(_ref7) {
+    var commit = _ref7.commit;
+
+    _getLists({ commit: commit });
   }
 };
 
