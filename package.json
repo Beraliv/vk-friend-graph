@@ -3,7 +3,7 @@
   "name": "vue-vk-friend-graph",
   "productName": "vue-vk-friend-graph",
   "description": "Vue / Vuex / Yarn / Babel VK Friend Graph App",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "license": "MIT",
   "scripts": {
     "build": "webpack",
@@ -17,13 +17,17 @@
     "email": "beraliv.spb@gmail.com"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "es6-promise": "^4.1.1",
     "vue": "^2.5.2",
+    "vue-d3-network": "^0.1.22",
     "vuex": "^3.0.1",
-    "vue-d3-network": "^0.1.22"
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
+    "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
