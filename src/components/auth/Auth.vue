@@ -14,7 +14,7 @@
 		data() {
 			return {
 				baseUrl: 'https://oauth.vk.com/authorize',
-				apiId: 6240559,
+				apiId: 6248210,
 				display: 'page',
 				redirectUri: 'https://beraliv.github.io/vue-vk-friend-graph',
 				scope: 'friends',
