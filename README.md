@@ -39,3 +39,7 @@ You can see built example [here](https://beraliv.github.io/vue-vk-friend-graph/)
 For running it locally you need to:
 
 - Run simultaneously `yarn watch` and `yarn dev` in two terminal tabs.
+
+## Dependencies
+
+- [vue-d3-network](https://github.com/emiliorizzo/vue-d3-network)
