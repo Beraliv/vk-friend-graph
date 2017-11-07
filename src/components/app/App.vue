@@ -8,7 +8,7 @@
         Authorised by user: {{ this.userId }}
       </span>
       <span class="measure">
-        Multiplicity measure: {{ this.getClusterNumber() }}
+        Cluster number: {{ this.clusterNumber }}
       </span>
       <d3-network
         :net-nodes="users"
@@ -24,11 +24,16 @@
   import D3Network from 'vue-d3-network';
 
   import jDBSCAN from '../../vendors/jDBSCAN';
-  import { combineGetters } from '../../helpers/functions';
 
   // TODO: import { Component } from 'component'; is not working
   // replaced temporary with relative path
   import VkAuth from '../auth/Auth.vue';
+
+  import { combineGetters } from '../../helpers/functions';
+  import {
+    PROXIMITY_DEFAULT,
+    AUTHORISE_WAIT_TIME_MS
+  } from '../../helpers/const';
 
   export default {
     name: 'VkApp',
@@ -45,7 +50,9 @@
             w: window.innerWidth,
             h: window.innerHeight
           }
-        }
+        },
+        clusterNumber: this.getClusterNumber(),
+        setIntervalId: undefined
       };
     },
 
@@ -55,7 +62,16 @@
 
       setTimeout(() => {
         this.collectData();
-      }, 50);
+      }, AUTHORISE_WAIT_TIME_MS);
+
+      // TODO: replace w/ Rx or proper listening, not triggering  all the time
+      this.setIntervalId = setInterval(() => {
+        this.clusterNumber = this.getClusterNumber();
+      }, AUTHORISE_WAIT_TIME_MS);
+    },
+
+    destroyed() {
+      clearInterval(this.setIntervalId);
     },
 
     computed: {
@@ -92,8 +108,8 @@
         );
 
         const dbscanner = jDBSCAN()
-          .eps(0.075)
-          .minPts(50)
+          .eps(PROXIMITY_DEFAULT)
+          .minPts(1)
           .distance('EUCLIDEAN')
           .data(coordinates);
 
