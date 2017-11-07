@@ -26,10 +26,6 @@ yarn dev
 yarn deploy
 ```
 
-## Code splitting
-
-As webpack supports both [dynamic import](https://webpack.js.org/guides/code-splitting-async/#dynamic-import-import-) and [`require.ensure`](https://webpack.js.org/guides/code-splitting-async/#require-ensure-) syntax, we would recommend you to stick to `require.ensure` for now because of [performance issue](https://github.com/webpack/webpack/issues/4636).
-
 ## Demo
 
 You can see built example [here](https://beraliv.github.io/vue-vk-friend-graph/)
