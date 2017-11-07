@@ -4,7 +4,12 @@
       <vk-auth/>
     </div>
     <div v-else>
-      Authorised by user: {{ userId }}
+      <span class="authorisation">
+        Authorised by user: {{ this.userId }}
+      </span>
+      <span class="measure">
+        Multiplicity measure: {{ this.getClusterNumber() }}
+      </span>
       <d3-network
         :net-nodes="users"
         :net-links="connections"
@@ -17,6 +22,9 @@
 <script>
   import { mapActions, mapGetters } from 'vuex';
   import D3Network from 'vue-d3-network';
+
+  import jDBSCAN from '../../vendors/jDBSCAN';
+  import { combineGetters } from '../../helpers/functions';
 
   // TODO: import { Component } from 'component'; is not working
   // replaced temporary with relative path
@@ -46,10 +54,8 @@
       this.authorise();
 
       setTimeout(() => {
-        this.collectData().then(() => {
-          this.getLists();
-        });
-      }, 1000);
+        this.collectData();
+      }, 50);
     },
 
     computed: {
@@ -68,11 +74,51 @@
     methods: {
       ...mapActions({
         authorise: 'authorise',
-        collectData: 'collectData',
-        getLists: 'getLists'
-      })
+        collectData: 'collectData'
+      }),
+
+      getClusterNumber() {
+        const coordinates = combineGetters(
+          document,
+          document => document.getElementById('l-nodes'),
+          nodesRoot => nodesRoot.getElementsByTagName('circle'),
+          nodesElements => [...nodesElements].map(circle => {
+            const { cx, cy } = circle.attributes;
+            return {
+              x: cx.nodeValue,
+              y: cy.nodeValue
+            };
+          })
+        );
+
+        const dbscanner = jDBSCAN()
+          .eps(0.075)
+          .minPts(50)
+          .distance('EUCLIDEAN')
+          .data(coordinates);
+
+        return combineGetters(
+          dbscanner(),
+          clusters => clusters.reduce((clusters, clusterIndex) => {
+            clusters.add(clusterIndex);
+            return clusters;
+          }, new Set()),
+          clusterSet => [...clusterSet],
+          clusterIndices => clusterIndices.length
+        );
+      }
     }
   }
 </script>
 
 <style src="vue-d3-network/dist/vue-d3-network.css"></style>
+
+<style scope>
+  span.authorisation {
+    display: block;
+  }
+
+  span.measure {
+    display: block;
+  }
+</style>

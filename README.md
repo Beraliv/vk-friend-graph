@@ -32,10 +32,17 @@ You can see built example [here](https://beraliv.github.io/vue-vk-friend-graph/)
 
 ## Issues
 
-For running it locally you need to:
+**For running it locally you need to:**
 
 - Run simultaneously `yarn watch` and `yarn dev` in two terminal tabs.
+
+**If the demo is not working, you should:**
+
+- Open DevTools > Application > Local Storage > [Website key](https://beraliv.github.io/vue-vk-friend-graph/)
+- Clear
+- Reload the page
 
 ## Dependencies
 
 - [vue-d3-network](https://github.com/emiliorizzo/vue-d3-network)
+- [jDBSCAN](https://github.com/upphiminn/jDBSCAN)
