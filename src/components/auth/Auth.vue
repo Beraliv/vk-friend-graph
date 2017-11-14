@@ -1,7 +1,6 @@
 <template>
 	<div class="vk-auth">
-		<a :href="uri"
-			>
+		<a :href="uri">
 			Auth to VK
 		</a>
 	</div>
