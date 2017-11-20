@@ -30,6 +30,11 @@ yarn deploy
 
 You can see built example [here](https://beraliv.github.io/vue-vk-friend-graph/)
 
+The interface looks like that:
+
+
+![UI](https://github.com/Beraliv/vue-vk-friend-graph/blob/master/src/images/interface.png)
+
 ## Issues
 
 **For running it locally you need to:**
