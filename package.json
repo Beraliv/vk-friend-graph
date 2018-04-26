@@ -10,7 +10,8 @@
     "watch": "webpack --watch",
     "dev": "webpack-dev-server",
     "predeploy": "yarn build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": {
     "name": "Alexey I. Berezin",
