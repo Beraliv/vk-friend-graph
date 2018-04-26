@@ -3,7 +3,7 @@
   "name": "vk-friend-graph",
   "productName": "vk-friend-graph",
   "description": "Vue / Vuex / Yarn / Babel VK Friend Graph App",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "license": "MIT",
   "scripts": {
     "build": "webpack",

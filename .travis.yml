@@ -1,3 +1,6 @@
+before_script:
+  - npm install -g yarn@1.6.0
 language: node_js
 node_js:
   - "node"
+  - "8"
