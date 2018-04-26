@@ -11,7 +11,7 @@
     "dev": "webpack-dev-server",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d dist",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Warning: no test specified\" && exit 0"
   },
   "author": {
     "name": "Alexey I. Berezin",
